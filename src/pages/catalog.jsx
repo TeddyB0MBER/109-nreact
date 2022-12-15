@@ -20,12 +20,13 @@ function Catalog() {
 
   return (
     <div className="catalog">
-      <h1>Check our Amazing Catalog</h1>
+      <h1>Look at the Fashion!</h1>
       <h4>We have {products.length} products</h4>
 
       {products.map((prod) => (
         <Product data={prod} />
       ))}
+      <div className="big-space"></div>
     </div>
   );
 }

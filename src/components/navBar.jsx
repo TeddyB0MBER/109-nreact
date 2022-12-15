@@ -17,7 +17,7 @@ function NavBar() {
     <nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container-fluid">
         <Link className="navbar-brand" to="#">
-          Navbar
+          D!NQ
         </Link>
         <button
           className="navbar-toggler"
