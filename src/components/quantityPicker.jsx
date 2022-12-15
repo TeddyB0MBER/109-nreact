@@ -1,5 +1,5 @@
-import './quantityPicker.css';
-import { useState } from 'react';
+import "./quantityPicker.css";
+import { useState } from "react";
 
 const QuantityPicker = (props) => {
   const [quantity, setQuantity] = useState(1);
@@ -24,11 +24,15 @@ const QuantityPicker = (props) => {
         +
       </button>
       <label>{quantity}</label>
-      <button className="btn btn-sm btn-dark" disabled={quantity === 1} onClick={decrease}>
+      <button
+        className="btn btn-sm btn-dark"
+        disabled={quantity === 1}
+        onClick={decrease}
+      >
         -
       </button>
     </div>
   );
-}
+};
 
 export default QuantityPicker;

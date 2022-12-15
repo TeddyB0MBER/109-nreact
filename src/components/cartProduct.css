@@ -1,0 +1,16 @@
+.cart-product{
+    display:flex;
+    padding:  10px; 
+    margin-bottom: 10px;
+    border: 1px solid black;
+}
+
+.cart-product img {
+    width: 120px;
+}
+.cart-product .description{
+    flex:4;
+}
+.cart-product label{
+ flex:1;
+}

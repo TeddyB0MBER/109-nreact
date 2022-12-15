@@ -1,15 +1,15 @@
-import Product from '../components/product';
-import './catalog.css';
-import { useEffect, useState } from 'react';
-import DataService from '../services/dataService';
+import Product from "../components/product";
+import "./catalog.css";
+import { useEffect, useState } from "react";
+import DataService from "../services/dataService";
 
 function Catalog() {
   let [products, setProducts] = useState([]);
 
   // arrow function
-  const loadCatalog = () => {
+  const loadCatalog = async () => {
     let service = new DataService();
-    let prods = service.getCatalog();
+    let prods = await service.getCatalog();
     setProducts(prods);
   };
 

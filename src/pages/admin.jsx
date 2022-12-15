@@ -1,12 +1,21 @@
 import "./admin.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import DataService from "../services/dataService";
 
 const Admin = () => {
   const [product, setProduct] = useState({});
   const [allProducts, setAllProducts] = useState([]);
 
-  const saveProduct = () => {
+  const saveProduct = async () => {
     console.log(product);
+
+    let fixedProd = { ...product };
+    fixedProd.price = parseFloat(fixedProd.price);
+
+    let service = new DataService();
+    let save = await service.saveProduct(product);
+    console.log(save);
+
     let copy = [...allProducts];
     copy.push(product);
     setAllProducts(copy);
@@ -38,6 +47,23 @@ const Admin = () => {
     copy.push(coupon);
     setAllCoupons(copy);
   };
+  //when the component is loaded/displayed
+  const loadProductFromServer = async () => {
+    let server = new DataService();
+    let serverprod = await server.getCatalog();
+    setAllProducts(serverprod);
+  };
+
+  const loadCouponsFromServer = async () => {
+    let service = new DataService();
+    let couponSer = await service.getCoupon();
+    setAllCoupons(couponSer);
+  };
+
+  useEffect(() => {
+    loadProductFromServer();
+    loadCouponsFromServer();
+  }, []); //the [] prevents an infinite loop for everytime something changes
 
   return (
     <div>
@@ -82,8 +108,7 @@ const Admin = () => {
               {allProducts.map((c) => (
                 <li key={c.title}>
                   {/* toFixed plus (amount) are decimals, ParseFloat is a forced conversion of number to string */}
-                  {c.title} - {c.image} - ${parseFloat(c.price).toFixed(2)} -{" "}
-                  {c.Category}
+                  {c.title} - ${parseFloat(c.price).toFixed(2)} -{c.Category}
                 </li>
               ))}
             </ul>
@@ -107,7 +132,7 @@ const Admin = () => {
             <ul>
               {allCoupons.map((c) => (
                 <li key={c.code}>
-                  {c.Code} - {c.Discount}
+                  {c.code} - {c.discount}
                 </li>
               ))}
             </ul>

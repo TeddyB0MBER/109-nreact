@@ -13,8 +13,17 @@ h3 {
     border-radius: 5px;
     margin-bottom: 100px;
 }
+
 .container2 {
     border: solid 2px black;
     padding: 20px;
     border-radius: 5px;
+}
+label{
+    width: 80px;
+}
+
+input {
+  display: inline-block;
+  float: right;
 }

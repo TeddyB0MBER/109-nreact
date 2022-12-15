@@ -1,66 +1,87 @@
+import axios from "axios";
+
 const catalog = [
   {
-    _id: '1',
+    _id: "1",
     price: 12.32,
-    title: 'Cabbage',
-    image: 'img-1.jpg',
-    category: 'Vegetable',
+    title: "Hokusai",
+    image: "hokusai.jpg",
+    category: "Vegetable",
   },
   {
-    _id: '2',
+    _id: "2",
     price: 22.71,
-    title: 'Strawberry',
-    image: 'product-6.jpg',
-    category: 'Fruit',
+    title: "Ramlethal",
+    image: "ramlethal.jpg",
+    category: "Fruit",
   },
   {
-    _id: '3',
+    _id: "3",
     price: 32.0,
-    title: 'Bell pepper',
-    image: 'img-14.jpg',
-    category: 'Vegetable',
+    title: "Skadi",
+    image: "skadi.jpg",
+    category: "Vegetable",
   },
   {
-    _id: '4',
+    _id: "4",
     price: 6.99,
-    title: 'Carrot',
-    image: 'img-4.jpg',
-    category: 'Vegetable',
+    title: "Carrot",
+    image: "img-4.jpg",
+    category: "Vegetable",
   },
   {
-    _id: '5',
+    _id: "5",
     price: 16.39,
-    title: 'Banana',
-    image: 'img-5.jpg',
-    category: 'Fruit',
+    title: "Banana",
+    image: "img-5.jpg",
+    category: "Fruit",
   },
   {
-    _id: '6',
+    _id: "6",
     price: 14.0,
-    title: 'Orange',
-    image: 'product-10.jpg',
-    category: 'Fruit',
+    title: "Orange",
+    image: "product-10.jpg",
+    category: "Fruit",
   },
   {
-    _id: '7',
+    _id: "7",
     price: 12.0,
-    title: 'Egg',
-    image: 'img-15.jpg',
-    category: 'Dairy & Eggs',
+    title: "Egg",
+    image: "img-15.jpg",
+    category: "Dairy & Eggs",
   },
   {
-    _id: '8',
+    _id: "8",
     price: 19.1,
-    title: 'Orange Juice',
-    image: 'product-15.jpg',
-    category: 'Beverages',
+    title: "Orange Juice",
+    image: "product-15.jpg",
+    category: "Beverages",
   },
 ];
 
 class DataService {
-  getCatalog() {
+  async getCatalog() {
     return catalog;
     // TODO: get the catalog from the server
+    //let result = await axios.get("http://127.0.0.1:5000/api/catalog");
+    //return result.data;
+  }
+
+  async saveProduct(product) {
+    let result = await axios.post(
+      "http://127..0.0.1:5000/api/catalog",
+      product
+    );
+    return result.data;
+  }
+
+  async getCoupon() {
+    try {
+      let result = await axios.get("http://127.0.0.1:5000/api/coupons");
+      return result.data;
+    } catch {
+      return [];
+    }
   }
 }
 
